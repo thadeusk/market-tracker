@@ -7,6 +7,7 @@ from dateutil import tz
 import feedparser
 import requests
 from openai import OpenAI
+from openai import RateLimitError
 
 MAX_ARTICLES = int(os.getenv("MAX_ARTICLES", "12"))
 MAX_THEMES = int(os.getenv("MAX_THEMES", "4"))
@@ -107,6 +108,8 @@ Rules:
 News items:
 {json.dumps(items, ensure_ascii=False)}
 """.strip()
+    
+    
 
     # Structured Outputs: enforce JSON schema. See OpenAI docs. 
     resp = client.responses.create(
