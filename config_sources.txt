@@ -1,0 +1,3 @@
+https://feeds.reuters.com/reuters/businessNews
+https://www.ft.com/markets?format=rss
+https://feeds.bbci.co.uk/news/business/rss.xml
