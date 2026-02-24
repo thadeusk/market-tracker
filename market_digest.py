@@ -110,17 +110,20 @@ News items:
 
     # Structured Outputs: enforce JSON schema. See OpenAI docs. 
     resp = client.responses.create(
-        model=MODEL,
-        input=prompt,
-        response_format={
+    model=MODEL,
+    input=[
+        {"role": "system", "content": "You are a global markets interview-prep assistant."},
+        {"role": "user", "content": prompt},
+    ],
+    text={
+        "format": {
             "type": "json_schema",
-            "json_schema": {
-                "name": schema["name"],
-                "schema": schema["schema"],
-                "strict": True,
-            },
-        },
-    )
+            "name": schema["name"],
+            "schema": schema["schema"],
+            "strict": True,
+        }
+    },
+)
 
     return json.loads(resp.output_text)
 
